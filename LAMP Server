@@ -1,0 +1,35 @@
+# Install Apache Server
+apt install apache2 
+
+# Install MySQL
+apt install gnupg
+
+cd /tmp
+wget https://dev.mysql.com/get/mysql-apt-config_0.8.13-1_all.deb
+
+dpkg -i mysql-apt-config*
+
+apt update
+
+apt install mysql-server
+
+mysql_secure_installation
+
+# Install php-mysql
+apt-get install php-mysql
+
+
+# Create MySQL Users
+# • ViewUser
+CREATE USER 'viewuser'@'localhost' IDENTIFIED BY 'viewuser'; 
+CREATE USER 'viewuser'@'%' IDENTIFIED BY 'viewuser'; 
+
+GRANT SELECT ON * . * TO 'viewuser'@'localhost';
+GRANT SELECT ON * . * TO 'viewuser'@'%';
+
+# • Admin
+CREATE USER 'boss'@'localhost' IDENTIFIED BY 'iamtheboss'; 
+CREATE USER 'boss'@'%' IDENTIFIED BY 'iamtheboss'; 
+
+GRANT ALL PRIVILEGES ON * . * TO 'viewuser'@'localhost';
+GRANT ALL PRIVILEGES ON * . * TO 'viewuser'@'%';
